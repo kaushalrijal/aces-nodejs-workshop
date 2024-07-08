@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        input[type="text"], textarea {
+            width: 97%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><h3>My Blog</h1></div>
+        <ul style="list-style: none; display: flex; gap: 15px;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/create">About</a></li>
+            <li><a href="/create">Contact</a></li>
+        </ul>
+    
+    </div>
+    <div class="container">
+        <h2>Create Blog</h2>
+        <form action="/createblog" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Subtitle:</label>
+                <input type="text" id="subtitle" name="subtitle" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+            <input type="submit" value="Create Blog">
+        </form>
+    </div>
+</body>
+</html>   
