@@ -2,7 +2,10 @@ const express = require("express");
 const connectToDb = require("./database/databaseConnection");
 const Blog = require("./model/blogModel");
 const { storage, multer } = require("./middleware/multerConfig");
+
 const app = express()
+
+const upload = multer({storage:storage})
 
 connectToDb()
 
@@ -12,7 +15,7 @@ app.use(express.urlencoded({extended : true}))
 app.set('view engine', 'ejs')
 
 app.get("/", (req, res)=>{
-    res.send("<h1>Hello Hariom</h1>")
+    res.render("home.ejs")
 })
 
 app.get("/about", (req, res)=>{
@@ -29,18 +32,20 @@ app.get("/createblog", (req, res)=>{
     res.render("./blog/create.ejs")
 })
 
-app.post("/createblog", async (req, res)=>{
+app.post("/createblog", upload.single('image'),async (req, res)=>{
     /*
         const title = req.body.title
         const subtitle = req.body.subtitle
         const description = req.body.description
     */
+    const file = req.file
     const {title, subtitle, description} = req.body
     
     await Blog.create({
         title,
         subtitle,
-        description
+        description,
+        image: file.filename
     })
     res.send("Blog created succesfully")
 })
