@@ -1,6 +1,7 @@
 const express = require("express");
 const connectToDb = require("./database/databaseConnection");
 const Blog = require("./model/blogModel");
+const { storage, multer } = require("./middleware/multerConfig");
 const app = express()
 
 connectToDb()
@@ -35,6 +36,7 @@ app.post("/createblog", async (req, res)=>{
         const description = req.body.description
     */
     const {title, subtitle, description} = req.body
+    
     await Blog.create({
         title,
         subtitle,
