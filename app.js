@@ -14,8 +14,9 @@ app.use(express.urlencoded({extended : true}))
 
 app.set('view engine', 'ejs')
 
-app.get("/", (req, res)=>{
-    res.render("home.ejs")
+app.get("/", async (req, res)=>{
+    const blogs = await Blog.find()
+    res.render("home.ejs", {blogs:blogs})
 })
 
 app.get("/about", (req, res)=>{
@@ -40,7 +41,7 @@ app.post("/createblog", upload.single('image'),async (req, res)=>{
     */
     const file = req.file
     const {title, subtitle, description} = req.body
-    
+
     await Blog.create({
         title,
         subtitle,
@@ -49,6 +50,8 @@ app.post("/createblog", upload.single('image'),async (req, res)=>{
     })
     res.send("Blog created succesfully")
 })
+
+app.use(express.static("./storage"))
 
 app.listen(3000, ()=>{
     console.log("Nodejs project has started at port " + 3000)
