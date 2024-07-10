@@ -29,6 +29,10 @@ app.get("/contact", (req, res)=>{
     res.render("contact.ejs", {data})
 })
 
+app.get("/blog", (req, res)=>{
+    res.render("./blog/blog.ejs")
+})
+
 app.get("/createblog", (req, res)=>{
     res.render("./blog/create.ejs")
 })
