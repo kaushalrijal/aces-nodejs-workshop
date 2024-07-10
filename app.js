@@ -34,6 +34,22 @@ app.get(`/blog/:id`, async(req, res)=>{
     const data = await Blog.findById(id);
     res.render("./blog/blog.ejs", {data})
 })
+app.get(`/delete/:id`, async(req, res)=>{
+    const id = req.params.id
+    await Blog.findByIdAndDelete(id);
+    res.redirect("/")
+})
+
+app.get('/update/:id', async(req, res)=>{
+    const id = req.params.id
+    const data = await Blog.findById(id)
+    res.render("./blog/edit.ejs", {data, id})
+})
+
+app.post('/update/:id', async(req, res)=>{
+    const id = req.params.id
+    res.redirect(`/blog/${id}`)
+})
 
 app.get("/createblog", (req, res)=>{
     res.render("./blog/create.ejs")
@@ -54,7 +70,7 @@ app.post("/createblog", upload.single('image'),async (req, res)=>{
         description,
         image: file.filename
     })
-    res.send("Blog created succesfully")
+    res.send("Blog created succesfully.<br /><a href='/'>Go to home</a>&nbsp;<a href='/createblog'>Create another blog</a>")
 })
 
 app.use(express.static("./storage"))
