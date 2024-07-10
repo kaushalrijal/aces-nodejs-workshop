@@ -11,6 +11,26 @@
 			padding: 0;
 			background-color: #f4f4f4;
 		}
+        .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a, .navbar button {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .navbar button {
+            background-color: #0056b3;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
 		.container {
 			max-width: 800px;
 			margin: 20px auto;
@@ -35,16 +55,32 @@
 			margin-top: 20px;
 			text-align: justify;
 		}
+        .active{
+            /* background: #fff;
+            color: #000 !important;
+            padding: 4px; */
+            text-decoration: underline !important;
+            font-weight: bold;
+        }
 	</style>
 </head>
 <body>
+    <div class="navbar">
+        <span>My Blog</span>
+        <div>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/blogs" class="active">Blogs</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <button onclick="window.location.href='/createblog'">+ Create Blog</button>
+    </div>
 	<div class="container">
-		<h1 class="blog-title">Blog Title</h1>
-		<img src="path/to/image.jpg" alt="Blog Image" class="blog-image">
-		<h2 class="blog-subtitle">Blog Subtitle</h2>
+		<h1 class="blog-title"><%-data.title%></h1>
+		<img src="/<%-data.image%>" alt="Blog Image" class="blog-image">
+		<h3 class="blog-subtitle"><%-data.subtitle%></h3>
 		<div class="blog-content">
-			<p>This is the main content of the blog. It can be multiple paragraphs long, include insights, experiences, and much more. The content here is meant to engage the reader, provide valuable information, and possibly entertain.</p>
-			<p>Further content, analysis, stories, or examples can follow. The structure of the content can vary depending on the topic, purpose, and audience of the blog. Engaging and relevant content will keep the reader interested and encourage them to explore more of your work.</p>
+			<p><%-data.description%></p>
 		</div>
 	</div>
 </body>

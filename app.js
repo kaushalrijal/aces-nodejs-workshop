@@ -29,8 +29,10 @@ app.get("/contact", (req, res)=>{
     res.render("contact.ejs", {data})
 })
 
-app.get("/blog", (req, res)=>{
-    res.render("./blog/blog.ejs")
+app.get(`/blog/:id`, async(req, res)=>{
+    const id = req.params.id
+    const data = await Blog.findById(id);
+    res.render("./blog/blog.ejs", {data})
 })
 
 app.get("/createblog", (req, res)=>{
