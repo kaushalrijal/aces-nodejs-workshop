@@ -95,9 +95,14 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  let flag = true;
-  const users = await User.find({ email, password });
-  users.length === 0 ? res.send("Login Failed") : res.send("Login Successful.");
+  const user = await User.find({email : email})
+  if(user.length === 0){
+    res.send("Invalid Email")
+  } else {
+    // check password now
+    bcrypt.compareSync(password, user[0].password) ? res.send("Login successfully") : res.send("Invalid Password")
+  }
+
 });
 
 app.get("/register", (req, res) => {
