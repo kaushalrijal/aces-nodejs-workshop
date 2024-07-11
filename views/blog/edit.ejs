@@ -77,14 +77,14 @@
     </div>
     <div class="container">
         <h2>Edit Blog</h2>
-        <form action="/update/<%-id%>" method="post" enctype="multipart/form-data">
+        <form action="/edit/<%-id%>" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" value="<%-data.title%>" required>
             </div>
             <div class="form-group">
                 <label for="image">Image:</label>
-                <input type="file" id="image" name="image" accept="image/*" src="<%-data.image%>">
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="subtitle">Subtitle:</label>
