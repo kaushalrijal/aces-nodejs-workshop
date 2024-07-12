@@ -46,9 +46,6 @@ body {
   }
 }
 .active {
-  /* background: #fff;
-            color: #000 !important;
-            padding: 4px; */
   text-decoration: underline !important;
   font-weight: bold;
 }

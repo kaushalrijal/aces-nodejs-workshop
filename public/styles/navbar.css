@@ -9,12 +9,12 @@
 }
 
 .navbar a,
-.navbar button {
+dialog button {
   color: white;
   text-decoration: none;
   margin: 0 10px;
 }
-.navbar button {
+dialog button {
   background-color: #0056b3;
   border: none;
   border-radius: 20px;
@@ -29,6 +29,12 @@
   border-radius: 50%;
   border-width: 2px;
 }
+.not-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
 
 .rightmost {
   display: flex;
@@ -37,6 +43,22 @@
 .sitename {
   font-size: x-large;
   font-weight: 700;
+}
+.create{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white; 
+  background-color: #007bff; 
+  border-style: solid;
+  font-weight: 600;
+  font-size: medium;
+  border-width: 2px;
+  border-color: #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 600px) {

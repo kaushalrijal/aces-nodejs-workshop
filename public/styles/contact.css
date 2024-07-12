@@ -42,3 +42,8 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+
+.active-contact {
+    text-decoration: underline !important;
+    font-weight: bold;
+  }

@@ -1,22 +1,29 @@
 <div class="navbar">
-    <span class="sitename">Blue Bird</span>
-    <div class="links">
-        <a href="/" class="active">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-    </div>
-    <div class="rightmost">
-    <button onclick="window.location.href='/createblog'">+ Create Blog</button>
-    <img src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" class="profile" onclick="document.querySelector('dialog').showModal()"/>
-</div>
-<dialog>
+  <span class="sitename">Blue Bird</span>
+  <div class="not-title">
+  <div class="links">
+    <a href="/" class="active">Home</a>
+    <a href="/about" class="active-about">About</a>
+    <a href="/contact" class="active-contact">Contact</a>
+  </div>
+  <button onclick="window.location.href='/createblog'" class="create">+ Create Blog</button>
+  <div class="rightmost">
+    <img
+      src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+      class="profile"
+      onclick="document.querySelector('dialog').showModal()"
+    />
+  </div>
+  <dialog>
     <p align="center">Do you want to logout</p>
-    <div style="display: flex;">
-    <form method="POST" action="/logout">
-      <button onclick="SubmitEvent()">Yes</button>
-    </form>
-    <button onclick="document.querySelector('dialog').close()">No, stay</button>
-</div>
+    <div style="display: flex">
+      <form method="POST" action="/logout">
+        <button onclick="SubmitEvent()">Yes</button>
+      </form>
+      <button onclick="document.querySelector('dialog').close()">
+        No, stay
+      </button>
+    </div>
   </dialog>
-  
+</div>
 </div>
