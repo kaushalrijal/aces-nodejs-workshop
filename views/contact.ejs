@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/navbar.css" />
-
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/styles/contact.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" /> 
 </head>
 <body>
     <%- include("./components/navbar.ejs") %>
-    <h1><%- data %></h1>
-    <form>
-        <input type="email" placeholder="email"><br />
-        <input type="texbox" placeholder="message"><br />
-        <input type="submit">
-    </form>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form action="/contact" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your email" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Your message" required class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn">Send</button>
+        </form>
+    </div>
 </body>
 </html>

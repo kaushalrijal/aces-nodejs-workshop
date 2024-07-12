@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
     <link rel="stylesheet" href="/styles/about.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
-
-</head>
-<body>
+  </head>
+  <body>
     <%- include("./components/navbar.ejs") %>
-    <h1><%- name %></h1>
-</body>
+    <div class="content">
+      <div class="container">
+        <h1>About This Site</h1>
+        <p>
+          This site was created by Kaushal Rijal during the ACES Node JS
+          workshop.
+        </p>
+        <p>
+          A special thanks to Mahesh Basnet for his guidance and support
+          throughout the workshop.
+        </p>
+        <h2>Connect with Me</h2>
+        <p>Follow me on social media:</p>
+        <ul>
+          <li><a href="https://twitter.com/yourtwitterhandle">Twitter</a></li>
+          <li><a href="https://github.com/yourgithubusername">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>

@@ -4,27 +4,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
   }
-  .navbar {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .navbar a,
-  .navbar button {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  .navbar button {
-    background-color: #0056b3;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
+  
   .container {
     max-width: 800px;
     margin: 20px auto;
