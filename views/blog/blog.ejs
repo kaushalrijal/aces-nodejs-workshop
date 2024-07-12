@@ -65,47 +65,38 @@
         .delete{
             background-color: #b30000;
             border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            height: 20%;
+            border-radius: 100%;
+            padding: 10px;
+            
         }
-        .delete a{
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+        
         .update{
             background-color: #1000B3;
             border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            height: 20%;
+            border-radius: 100%;
+            padding: 10px;
+            
         }
-        .update a{
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+        @media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+        
 	</style>
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
-    <div class="navbar">
-        <span>My Blog</span>
-        <div>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/blogs" class="active">Blogs</a>
-            <a href="/contact">Contact</a>
-        </div>
-        <button onclick="window.location.href='/createblog'">+ Create Blog</button>
-    </div>
+    <%- include("../components/navbar.ejs") %>
 	<div class="container">
 		<div style="display: flex; width: 100%; justify-content: space-between; padding-right: 10px; align-items: center;"><h1 class="blog-title"><%-data.title%></h1>
         <div>
-            <button class="update"><a href="/edit/<%-data._id%>">Edit Me</a></button>
-            <button class="delete"><a href="/delete/<%-data._id%>">Delete Me</a></button>
+            <div style="display: flex; flex-direction: row;">
+                <a href="/edit/<%-data._id%>" class="update" style="text-decoration: none; color: white;"><i class="fas fa-pencil-alt"></i></a>
+                <a href="/delete/<%-data._id%>" class="delete" style="text-decoration: none; color: white; margin-left: 10px;"><i class="fas fa-trash"></i></a>
+            </div>
         </div>
         </div>
         <h4>Posted by: <%- data.author?.username %></h4>

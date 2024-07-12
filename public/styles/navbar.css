@@ -1,0 +1,60 @@
+.navbar {
+  display: flex;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a,
+.navbar button {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.navbar button {
+  background-color: #0056b3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 2px;
+}
+
+.rightmost {
+  display: flex;
+}
+
+.sitename {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  
+.links{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+  .rightmost {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

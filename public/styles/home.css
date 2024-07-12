@@ -4,37 +4,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
 }
-.navbar {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.navbar a,
-.navbar button {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-}
-.navbar button {
-  background-color: #0056b3;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-.profile {
-  width: 40px;
-  height: 40px;
-  border-style: solid;
-  border-radius: 50%;
-  border-width: 2px;
-}
-.rightmost {
-  display: flex;
-}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -100,7 +70,8 @@ body {
 
 .search-container input[type="text"] {
   width: 70%;
-  padding: 10px;
+  padding: 15px;
+  font-size: medium;
   margin-right: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
