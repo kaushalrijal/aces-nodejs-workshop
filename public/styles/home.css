@@ -65,7 +65,7 @@ body {
   align-items: center;
 }
 
-.search-container input[type="text"] {
+.search-container input[type="search"] {
   width: 70%;
   padding: 15px;
   font-size: medium;
