@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { findById } = require("../model/blogModel");
 const User = require("../model/userModel");
-const profisify = require("util").promisify;
+const promisify = require("util").promisify;
 
 const isAuthenticated = (req, res, next) => {
   token = req.cookies.token;
