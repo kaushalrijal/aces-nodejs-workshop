@@ -23,8 +23,8 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
-  const blogs = await Blog.find();
-  res.render("home.ejs", { blogs: blogs, query : "" });
+  const blogs = await Blog.find().populate('author');
+  res.render("home.ejs", { blogs: blogs, query : ""});
 });
 
 app.post("/", async (req, res)=>{
@@ -46,7 +46,7 @@ app.get("/contact", (req, res) => {
 
 app.get(`/blog/:id`, async (req, res) => {
   const id = req.params.id;
-  const data = await Blog.findById(id);
+  const data = await Blog.findById(id).populate('author');
   res.render("./blog/blog.ejs", { data });
 });
 app.get(`/delete/:id`, isAuthenticated, async (req, res) => {
@@ -79,23 +79,28 @@ app.post("/edit/:id", isAuthenticated, upload.single("image"), async (req, res) 
 });
 
 app.get("/createblog", isAuthenticated, (req, res) => {
+  
   res.render("./blog/create.ejs");
 });
 
-app.post("/createblog", upload.single("image"), async (req, res) => {
+app.post("/createblog", isAuthenticated, upload.single("image"), async (req, res) => {
   /*
         const title = req.body.title
         const subtitle = req.body.subtitle
         const description = req.body.description
     */
   const file = req.file;
+  
   const { title, subtitle, description } = req.body;
+
+  const uid = req.userId
 
   await Blog.create({
     title,
     subtitle,
     description,
     image: file.filename,
+    author:uid
   });
   res.send(
     "Blog created succesfully.<br /><a href='/'>Go to home</a>&nbsp;<a href='/createblog'>Create another blog</a>"
