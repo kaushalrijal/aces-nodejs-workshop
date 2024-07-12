@@ -1,9 +1,14 @@
+require("dotenv").config()
+
 const express = require("express");
 const connectToDb = require("./database/databaseConnection");
 const Blog = require("./model/blogModel");
 const { storage, multer } = require("./middleware/multerConfig");
 const User = require("./model/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const isAuthenticated = require("./middleware/isAuthenticated");
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -13,10 +18,12 @@ connectToDb();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
+
   const blogs = await Blog.find();
   res.render("home.ejs", { blogs: blogs });
 });
@@ -36,19 +43,19 @@ app.get(`/blog/:id`, async (req, res) => {
   const data = await Blog.findById(id);
   res.render("./blog/blog.ejs", { data });
 });
-app.get(`/delete/:id`, async (req, res) => {
+app.get(`/delete/:id`, isAuthenticated, async (req, res) => {
   const id = req.params.id;
   await Blog.findByIdAndDelete(id);
   res.redirect("/");
 });
 
-app.get("/edit/:id", async (req, res) => {
+app.get("/edit/:id", isAuthenticated, async (req, res) => {
   const id = req.params.id;
   const data = await Blog.findById(id);
   res.render("./blog/edit.ejs", { data, id });
 });
 
-app.post("/edit/:id", upload.single("image"), async (req, res) => {
+app.post("/edit/:id", isAuthenticated, upload.single("image"), async (req, res) => {
   const id = req.params.id;
   const image = req.file?.filename;
   const { title, subtitle, description } = req.body;
@@ -65,7 +72,7 @@ app.post("/edit/:id", upload.single("image"), async (req, res) => {
   res.redirect("/blog/" + id);
 });
 
-app.get("/createblog", (req, res) => {
+app.get("/createblog", isAuthenticated, (req, res) => {
   res.render("./blog/create.ejs");
 });
 
@@ -95,12 +102,19 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.find({email : email})
-  if(user.length === 0){
+  const user = await User.find({ email: email })
+  if (user.length === 0) {
     res.send("Invalid Email")
   } else {
     // check password now
-    bcrypt.compareSync(password, user[0].password) ? res.send("Login successfully") : res.send("Invalid Password")
+    const isMatched = bcrypt.compareSync(password, user[0].password)
+    if (isMatched) {
+      const token = jwt.sign({userId : user[0]._id}, process.env.SECRET, {expiresIn: '20d'})
+      res.cookie("token", token)
+      res.send("Login successfully")
+    } else {
+      res.send("Invalid Password")
+    }
   }
 
 });
