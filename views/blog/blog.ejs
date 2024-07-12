@@ -1,110 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blog Title</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background-color: #f4f4f4;
-		}
-        .navbar {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar a, .navbar button {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .navbar button {
-            background-color: #0056b3;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-		.container {
-			max-width: 800px;
-			margin: 20px auto;
-			background-color: white;
-			padding: 20px;
-			border-radius: 5px;
-		}
-		.blog-image {
-			max-width: 100%;
-			height: auto;
-			border-radius: 5px;
-		}
-		.blog-title {
-			color: #333;
-			margin-top: 20px;
-		}
-		.blog-subtitle {
-			color: #666;
-			margin-top: 10px;
-		}
-		.blog-content {
-			margin-top: 20px;
-			text-align: justify;
-		}
-        .active{
-            /* background: #fff;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Title</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .navbar {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar a,
+      .navbar button {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      .navbar button {
+        background-color: #0056b3;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      .blog-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+      .blog-title {
+        color: #333;
+        margin-top: 20px;
+      }
+      .blog-subtitle {
+        color: #666;
+        margin-top: 10px;
+      }
+      .blog-content {
+        margin-top: 20px;
+        text-align: justify;
+      }
+      .active {
+        /* background: #fff;
             color: #000 !important;
             padding: 4px; */
-            text-decoration: underline !important;
-            font-weight: bold;
+        text-decoration: underline !important;
+        font-weight: bold;
+      }
+      .delete {
+        background-color: #b30000;
+        border: none;
+        border-radius: 100%;
+        padding: 10px;
+      }
+
+      .update {
+        background-color: #1000b3;
+        border: none;
+        border-radius: 100%;
+        padding: 10px;
+      }
+      @media only screen and (max-width: 600px) {
+        body {
+          background-color: lightblue;
+        }
+        .header{
+            display: flex;
+            flex-direction: column;
+        }
+        .header h1{
+            font-size: larger;
+            text-align: justify;
+        }
+        .buttons{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+        .update{
+            font-size: small;
+            padding: 8px;
         }
         .delete{
-            background-color: #b30000;
-            border: none;
-            border-radius: 100%;
-            padding: 10px;
-            
+            font-size: small;
+            padding: 8px;
         }
-        
-        .update{
-            background-color: #1000B3;
-            border: none;
-            border-radius: 100%;
-            padding: 10px;
-            
-        }
-        @media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
-        
-	</style>
+      }
+    </style>
     <link rel="stylesheet" href="/styles/navbar.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
     <%- include("../components/navbar.ejs") %>
-	<div class="container">
-		<div style="display: flex; width: 100%; justify-content: space-between; padding-right: 10px; align-items: center;"><h1 class="blog-title"><%-data.title%></h1>
-        <div>
-            <div style="display: flex; flex-direction: row;">
-                <a href="/edit/<%-data._id%>" class="update" style="text-decoration: none; color: white;"><i class="fas fa-pencil-alt"></i></a>
-                <a href="/delete/<%-data._id%>" class="delete" style="text-decoration: none; color: white; margin-left: 10px;"><i class="fas fa-trash"></i></a>
-            </div>
+    <div class="container">
+      <div
+        style="
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          padding-right: 10px;
+          align-items: center;
+        "
+        class="header"
+      >
+        <h1 class="blog-title"><%-data.title%></h1>
+
+        <div style="display: flex; flex-direction: row" class="buttons">
+          <a
+            href="/edit/<%-data._id%>"
+            class="update"
+            style="text-decoration: none; color: white"
+            ><i class="fas fa-pencil-alt"></i
+          ></a>
+          <a
+            href="/delete/<%-data._id%>"
+            class="delete"
+            style="text-decoration: none; color: white; margin-left: 10px"
+            ><i class="fas fa-trash"></i
+          ></a>
         </div>
-        </div>
-        <h4>Posted by: <%- data.author?.username %></h4>
-		<img src="/<%-data.image%>" alt="Blog Image" class="blog-image">
-		<h3 class="blog-subtitle"><%-data.subtitle%></h3>
-		<div class="blog-content">
-			<p><%-data.description%></p>
-		</div>
-	</div>
-</body>
+      </div>
+
+      <h4>Posted by: <%- data.author?.username %></h4>
+      <img src="/<%-data.image%>" alt="Blog Image" class="blog-image" />
+      <h3 class="blog-subtitle"><%-data.subtitle%></h3>
+      <div class="blog-content">
+        <p><%-data.description%></p>
+      </div>
+    </div>
+  </body>
 </html>
