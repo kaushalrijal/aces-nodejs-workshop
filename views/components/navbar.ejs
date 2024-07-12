@@ -6,5 +6,18 @@
         <a href="/blogs">Blogs</a>
         <a href="/contact">Contact</a>
     </div>
+    <div class="rightmost">
     <button onclick="window.location.href='/createblog'">+ Create Blog</button>
+    <img src="https://thispersondoesnotexist.com/" class="profile" onclick="document.querySelector('dialog').showModal()"/>
+</div>
+<dialog>
+    <p align="center">Do you want to logout</p>
+    <div style="display: flex;">
+    <form method="POST" action="/logout">
+      <button onclick="SubmitEvent()">Yes</button>
+    </form>
+    <button onclick="document.querySelector('dialog').close()">No, stay</button>
+</div>
+  </dialog>
+  
 </div>

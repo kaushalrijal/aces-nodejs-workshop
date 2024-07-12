@@ -23,10 +23,16 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
-
   const blogs = await Blog.find();
-  res.render("home.ejs", { blogs: blogs });
+  res.render("home.ejs", { blogs: blogs, query : "" });
 });
+
+app.post("/", async (req, res)=>{
+  const query = req.body.search;
+  const blogs = await Blog.find({title : query});
+  res.render("home.ejs", { blogs: blogs, query : query });
+
+})
 
 app.get("/about", (req, res) => {
   const name = "Kaushal";
@@ -111,7 +117,7 @@ app.post("/login", async (req, res) => {
     if (isMatched) {
       const token = jwt.sign({userId : user[0]._id}, process.env.SECRET, {expiresIn: '20d'})
       res.cookie("token", token)
-      res.send("Login successfully")
+      res.redirect("/")
     } else {
       res.send("Invalid Password")
     }
@@ -132,6 +138,11 @@ app.post("/register", async (req, res) => {
   });
   res.redirect("/login");
 });
+
+app.post("/logout", async(req, res)=>{
+  res.clearCookie('token')
+  res.redirect('/login')
+})
 
 app.use(express.static("./storage"));
 app.use(express.static("./public"));

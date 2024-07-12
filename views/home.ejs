@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Homepage</title>
     <link rel="stylesheet" href="/styles/home.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <%- include("./components/navbar.ejs") %>
+    <form action="/" method="post">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." name="search" value="<%-query%>"/>
+        <button type="submit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </form>
     <div class="container">
-        <%if(blogs.length === 0){%>
-            <h1>No posts yet. Create one</h1>
-        <%} else {%>
-           <% blogs.forEach((blog)=>{ %>
-                <div class="card">
-                    <img src="<%- blog.image%>" alt="Blog Image">
-                    <div class="card-content">
-                        <h3 class="card-title"><%-blog.title%></h3>
-                        <p class="card-description"><%-blog.subtitle%></p>
-                        <a href="/blog/<%-blog._id%>" class="card-link">...See More</a>
-                    </div>
-                </div>
-                <%})}%>
+      <%if(blogs.length === 0){%>
+      <h1>No posts yet. Create one</h1>
+      <%} else {%> <% blogs.forEach((blog)=>{ %>
+      <div class="card">
+        <img src="<%- blog.image%>" alt="Blog Image" />
+        <div class="card-content">
+          <h3 class="card-title"><%-blog.title%></h3>
+          <p class="card-description"><%-blog.subtitle%></p>
+          <a href="/blog/<%-blog._id%>" class="card-link">...See More</a>
+        </div>
+      </div>
+      <%})}%>
     </div>
-</body>
-</html> 
+  </body>
+</html>
