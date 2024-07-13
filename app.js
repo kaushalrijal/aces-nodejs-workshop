@@ -29,8 +29,9 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res)=>{
   const query = req.body.search;
-  const blogs = await Blog.find({title : query});
-  res.render("home.ejs", { blogs: blogs, query : query });
+  // const blogs = await Blog.find({title : query});
+  const test = await Blog.find( { 'title' : { '$regex' : query, '$options' : 'i' } } )
+  res.render("home.ejs", { blogs: test, query : query });
 
 })
 
